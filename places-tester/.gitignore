@@ -1,1 +1,81 @@
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Environment Files ---
 .env
+.env.*
+!.env.example
+
+# --- Build Output ---
+dist/
+build/
+out/
+coverage/
+.next/
+.nuxt/
+.svelte-kit/
+.serverless/
+functions/node_modules/
+tmp/
+temp/
+
+# --- TypeScript ---
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# --- Logs ---
+logs/
+*.log
+*.log.*
+logfile
+pids
+*.pid
+*.seed
+*.csv
+
+# --- Caches ---
+.cache/
+.eslintcache
+.parcel-cache/
+.vite/
+vite.config.ts.timestamp*
+.npm/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# --- Testing ---
+.jest/
+.jest-cache/
+.jest-test-results/
+coverage/
+.nyc_output/
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Misc ---
+*.local
+*.tgz
+*.zip
+*.bak
+*.orig
+*.tmp
