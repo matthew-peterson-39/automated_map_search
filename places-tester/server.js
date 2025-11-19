@@ -24,38 +24,50 @@ app.get('/api/health', (req, res) => {
 });
 
 // Main Places search endpoint
+// server.js (inside app.post('/api/search-places', ...))
 app.post('/api/search-places', async (req, res) => {
-  const { textQuery, pageSize } = req.body;
+  const { textQuery, pageSize, pageToken } = req.body;
 
   if (!textQuery) {
     return res.status(400).json({ error: 'textQuery is required' });
   }
 
   try {
+    const body = {
+      textQuery,
+      pageSize: pageSize || 20,
+      minRating: 4.0, // server-side filter
+      includePureServiceAreaBusinesses: true,
+    };
+
+    if (pageToken) {
+      body.pageToken = pageToken;
+    }
+
     const response = await axios.post(
       'https://places.googleapis.com/v1/places:searchText',
-      {
-        textQuery,
-        pageSize: pageSize || 20,
-      },
+      body,
       {
         headers: {
           'Content-Type': 'application/json',
           'X-Goog-Api-Key': API_KEY,
-          // Ask only for the fields we care about for now
           'X-Goog-FieldMask':
-            'places.id,' +
-            'places.displayName,' +
-            'places.rating,' +
-            'places.userRatingCount,' +
-            'places.formattedAddress,' +
-            'places.websiteUri,' +
-            'places.businessStatus',
+            [
+              'places.id',
+              'places.displayName',
+              'places.rating',
+              'places.userRatingCount',
+              'places.formattedAddress',
+              'places.websiteUri',
+              'places.businessStatus',
+              'places.reviews.publishTime',
+              'nextPageToken',
+            ].join(','),
         },
       }
     );
 
-    res.json(response.data);
+    res.json(response.data); // includes places[] and maybe nextPageToken
   } catch (err) {
     console.error('Error from Places API:', err.response?.data || err.message);
     res.status(500).json({
@@ -64,6 +76,7 @@ app.post('/api/search-places', async (req, res) => {
     });
   }
 });
+
 
 const PORT = process.env.PORT || 3000;
 

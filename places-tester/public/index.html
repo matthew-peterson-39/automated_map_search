@@ -1,14 +1,14 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Places API Tester</title>
+    <title>Google Places Lead Finder</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
     <main class="container">
-      <h1>Google Places Tester</h1>
+      <h1>Google Places Lead Finder</h1>
 
       <section class="controls">
         <label>
@@ -26,6 +26,8 @@
         </label>
 
         <button id="searchBtn">Search</button>
+        <button id="loadMoreBtn">Load more</button>
+
         <span id="status" class="status"></span>
       </section>
 
@@ -35,11 +37,12 @@
           <table id="summaryTable">
             <thead>
               <tr>
+                <th>Score</th>
                 <th>Name</th>
                 <th>Rating</th>
                 <th>Reviews</th>
-                <th>Address</th>
                 <th>Website</th>
+                <th>Address</th>
                 <th>Status</th>
               </tr>
             </thead>
