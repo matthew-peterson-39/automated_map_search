@@ -1,0 +1,59 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Places API Tester</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Google Places Tester</h1>
+
+      <section class="controls">
+        <label>
+          Search query
+          <input
+            id="textQuery"
+            type="text"
+            value="roofing contractor near Jacksonville, FL"
+          />
+        </label>
+
+        <label>
+          Page size
+          <input id="pageSize" type="number" value="20" min="1" max="50" />
+        </label>
+
+        <button id="searchBtn">Search</button>
+        <span id="status" class="status"></span>
+      </section>
+
+      <section class="results">
+        <h2>Places (summary)</h2>
+        <div id="summaryContainer">
+          <table id="summaryTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Address</th>
+                <th>Website</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="summaryBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="raw-json">
+        <h2>Raw JSON</h2>
+        <pre id="rawJson"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
